@@ -43,10 +43,10 @@ export default function Page() {
           <LoveStory />
           <Countdown />
           <EventDetails />
-          <MapsSection />
           <Gallery />
           {/* <WeddingGift /> */}
           <RsvpWishes />
+          <MapsSection />
           <Footer />
         </>
       ) : null}
