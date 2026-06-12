@@ -26,7 +26,7 @@ export function Hero({ onOpen, opened }: HeroProps) {
         <img
           src="/images/foto_wedding1.jpeg"
           alt="Foto pasangan mempelai"
-          className="size-full object-cover"
+          className="size-full object-cover object-[80%_20%]"
         />
         <div className="absolute inset-0 bg-foreground/45" />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-transparent to-background/80" />

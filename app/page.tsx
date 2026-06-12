@@ -45,7 +45,7 @@ export default function Page() {
           <EventDetails />
           <MapsSection />
           <Gallery />
-          <WeddingGift />
+          {/* <WeddingGift /> */}
           <RsvpWishes />
           <Footer />
         </>

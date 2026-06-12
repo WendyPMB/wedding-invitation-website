@@ -23,7 +23,7 @@ export function Footer() {
           {couple.bride.shortName}
         </p>
         <p className="mt-2 text-xs uppercase tracking-luxe text-background/60">
-          Wassalamu&apos;alaikum Warahmatullahi Wabarakatuh
+          TerimaKasih
         </p>
         <p className="mt-12 text-xs text-background/50">
           &copy; {year} {couple.groom.shortName} &amp; {couple.bride.shortName}. Dibuat dengan cinta.
