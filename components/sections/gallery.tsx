@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState, useEffect, useCallback } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
@@ -65,11 +66,13 @@ export function Gallery() {
               className="group relative size-64 flex-none overflow-hidden rounded-xl border border-border shadow-sm focus:outline-none focus:ring-2 focus:ring-primary md:size-72"
               aria-label={`Buka foto ${(index % gallery.length) + 1}`}
             >
-              <img
+              <Image
                 src={src || "/placeholder.svg"}
                 alt={`Galeri foto ${(index % gallery.length) + 1}`}
-                className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
+                sizes="(max-width: 768px) 256px, 288px"
               />
               <div className="absolute inset-0 bg-foreground/0 transition-colors group-hover:bg-foreground/10" />
             </button>
@@ -104,15 +107,22 @@ export function Gallery() {
             >
               <ChevronLeft className="size-7" />
             </button>
-            <motion.img
+            <motion.div
               key={active}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              src={gallery[active] || "/placeholder.svg"}
-              alt={`Galeri foto ${active + 1}`}
-              className="max-h-[85vh] max-w-full rounded-lg object-contain"
+              className="relative max-h-[85vh] max-w-full rounded-lg"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <Image
+                src={gallery[active] || "/placeholder.svg"}
+                alt={`Galeri foto ${active + 1}`}
+                width={1200}
+                height={900}
+                className="max-h-[85vh] max-w-full rounded-lg object-contain"
+                loading="lazy"
+              />
+            </motion.div>
             <button
               onClick={(e) => { e.stopPropagation(); next() }}
               className="absolute right-3 rounded-full bg-background/15 p-2 text-background transition-colors hover:bg-background/25 md:right-8"

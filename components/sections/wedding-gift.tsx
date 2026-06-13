@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import { Check, Copy, Gift } from "lucide-react"
 import { toast } from "sonner"
@@ -74,11 +75,13 @@ export function WeddingGift() {
             className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card px-6 py-8 text-center shadow-sm"
           >
             <p className="text-xs uppercase tracking-luxe text-primary">QRIS</p>
-            <div className="size-44 overflow-hidden rounded-xl border border-border bg-background p-2">
-              <img
+            <div className="relative size-44 overflow-hidden rounded-xl border border-border bg-background p-2">
+              <Image
                 src="/images/qris.png"
                 alt="Kode QRIS untuk hadiah"
-                className="size-full object-contain"
+                fill
+                className="object-contain"
+                loading="lazy"
               />
             </div>
             <p className="text-sm text-muted-foreground">

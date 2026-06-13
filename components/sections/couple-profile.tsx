@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { AtSign } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { SectionHeading } from "@/components/section-heading"
@@ -10,11 +11,14 @@ function ProfileCard({ person, delay }: { person: Person; delay: number }) {
     <Reveal delay={delay} className="flex flex-col items-center text-center">
       <div className="relative">
         <div className="absolute -inset-3 rounded-full border border-primary/30" />
-        <div className="size-48 overflow-hidden rounded-full border-4 border-card shadow-lg md:size-56">
-          <img
+        <div className="relative size-48 overflow-hidden rounded-full border-4 border-card shadow-lg md:size-56">
+          <Image
             src={person.photo || "/placeholder.svg"}
             alt={`Foto ${person.name}`}
-            className="size-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 192px, 224px"
+            loading="lazy"
           />
         </div>
       </div>

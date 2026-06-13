@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { ChevronDown, Mail } from "lucide-react"
 import { weddingData } from "@/lib/wedding-data"
@@ -23,10 +24,13 @@ export function Hero({ onOpen, opened }: HeroProps) {
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/images/foto_wedding1.jpeg"
           alt="Foto pasangan mempelai"
-          className="size-full object-cover object-[80%_20%]"
+          fill
+          priority
+          className="object-cover object-[80%_20%]"
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-foreground/45" />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-transparent to-background/80" />

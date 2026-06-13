@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Reveal } from "@/components/reveal"
 import { SectionHeading } from "@/components/section-heading"
 import { weddingData } from "@/lib/wedding-data"
@@ -44,10 +45,13 @@ export function LoveStory() {
 
                   <div className="[direction:ltr]">
                     <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
-                      <img
+                      <Image
                         src={item.photo || "/placeholder.svg"}
                         alt={item.title}
+                        width={400}
+                        height={300}
                         className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                        loading="lazy"
                       />
                     </div>
                   </div>
