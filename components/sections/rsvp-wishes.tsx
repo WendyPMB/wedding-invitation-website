@@ -24,6 +24,7 @@ export function RsvpWishes() {
   const [attendance, setAttendance] = useState<Attendance>("")
   const [message, setMessage] = useState("")
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isLoading, setIsLoading] = useState(false)
 
   const validate = () => {
     const next: Record<string, string> = {}
@@ -34,16 +35,42 @@ export function RsvpWishes() {
     return Object.keys(next).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validate()) return
-    setWishes((prev) => [{ name: name.trim(), message: message.trim() }, ...prev])
-    toast.success("Terima kasih atas ucapan dan konfirmasinya!")
-    setName("")
-    setGuests("1")
-    setAttendance("")
-    setMessage("")
-    setErrors({})
+
+    setIsLoading(true)
+    try {
+      const response = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          guests: parseInt(guests),
+          attendance,
+          message: message.trim(),
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to submit RSVP")
+      }
+
+      setWishes((prev) => [{ name: name.trim(), message: message.trim() }, ...prev])
+      toast.success("Terima kasih atas ucapan dan konfirmasinya!")
+      setName("")
+      setGuests("1")
+      setAttendance("")
+      setMessage("")
+      setErrors({})
+    } catch (error) {
+      console.error("Error submitting RSVP:", error)
+      toast.error("Gagal mengirim RSVP. Silakan coba lagi.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -139,10 +166,11 @@ export function RsvpWishes() {
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90"
+                disabled={isLoading}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="size-4" />
-                Kirim
+                {isLoading ? "Mengirim..." : "Kirim"}
               </button>
             </form>
           </Reveal>

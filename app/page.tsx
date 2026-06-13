@@ -40,13 +40,13 @@ export default function Page() {
         <>
           <Greeting />
           <CoupleProfile />
-          <LoveStory />
+          {/* <LoveStory /> */}
           <Countdown />
           <EventDetails />
           <Gallery />
           {/* <WeddingGift /> */}
           <RsvpWishes />
-          <MapsSection />
+          {/* <MapsSection /> */}
           <Footer />
         </>
       ) : null}
